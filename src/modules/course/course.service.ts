@@ -15,6 +15,7 @@ import { InjectBot } from 'nestjs-telegraf';
 import { Context, Telegraf } from 'telegraf';
 import { ConfigService } from '@nestjs/config';
 import { ChapterEntity } from '../chapter-management/entity/chapter.entity';
+import { MESSAGE_HEAD } from './type/payment-message';
 
 @Injectable()
 export class CourseService extends TypeOrmCrudService<CourseEntity> {
@@ -40,7 +41,7 @@ export class CourseService extends TypeOrmCrudService<CourseEntity> {
       this.bot.telegram
         .sendMessage(
           this.configService.get('PRIVATE_GROUP_CHAT_ID'),
-          `Hi there! There is a purchase with translation ID: ${
+          `${MESSAGE_HEAD} Hi there! There is a purchase with translation ID: ${
             payload.transaction
           } valued: $${payload.price}. Please go to ${this.configService.get(
             'ADMIN_URL',
