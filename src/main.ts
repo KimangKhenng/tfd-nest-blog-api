@@ -96,6 +96,6 @@ async function bootstrap() {
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   // Listen to port given by environment on production server (Heroku, DigitalOcean App,..), otherwise 3000
   // Specify '0.0.0.0' in the listen() to accept connections on other hosts.
-  await app.listen(configService.get("PORT") || 3000);
+  await app.listen(configService.get("APP_PORT") || 3000);
 }
 bootstrap();
